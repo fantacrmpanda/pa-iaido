@@ -373,30 +373,30 @@
             text-decoration: none;
             cursor: pointer;
         }
-    
-/* Info modal panel */
-.modal-panel {
-    margin: 40px auto;
-    background: #fff;
-    color: #1a1a1a;
-    width: 90%;
-    max-width: 700px;
-    border-radius: 12px;
-    padding: 24px 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    line-height: 1.6;
-}
-.modal-panel h3 {
-    margin: 0 0 10px 0;
-    font-family: 'Zen Kurenaido', sans-serif;
-    font-size: 1.8rem;
-    color: var(--accent-color);
-}
-.modal-panel hr {
-    border: 0;
-    border-top: 1px solid #eee;
-    margin: 14px 0 16px 0;
-}
+
+    /* Info modal panel */
+    .modal-panel {
+        margin: 40px auto;
+        background: #fff;
+        color: #1a1a1a;
+        width: 90%;
+        max-width: 700px;
+        border-radius: 12px;
+        padding: 24px 28px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        line-height: 1.6;
+    }
+    .modal-panel h3 {
+        margin: 0 0 10px 0;
+        font-family: 'Zen Kurenaido', sans-serif;
+        font-size: 1.8rem;
+        color: var(--accent-color);
+    }
+    .modal-panel hr {
+        border: 0;
+        border-top: 1px solid #eee;
+        margin: 14px 0 16px 0;
+    }
 
 </style>
 </head>
@@ -598,7 +598,7 @@
                 <div class="card" style="text-align: left;">
                     <h3>Local Dojos</h3>
                     <p><a href="https://berkeleykendo.org/" target="_blank">Berkeley Kendo Dojo</a></p>
-                    <p><a href="https://salinaskendo.org/Salinas_Kendo_Dojo/Home.html" target="_blank">Salinas Kendo Dojo</a></p>
+                    <p><a href="https://salinaskendo.org" target="_blank">Salinas Kendo Dojo</a></p>
                     <p><a href="#" id="rancho-link" role="button" aria-controls="ranchoModal">Rancho Cordova Iaido Group</a>
                     <br>
                 </div>
@@ -731,8 +731,8 @@
         }
 
         populateUpcomingEvents();
-    
-  
+
+
   // Rancho Cordova modal behavior (robust + accessible)
   document.addEventListener('DOMContentLoaded', function() {
     function openModal(modal) {
