@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palo Alto Iaido</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f0f0f0;
+            --accent-color: #1a1a1a;
+            --text-color: #1a1a1a;
+            --light-text-color: #555;
+            --bg-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('papertexture.png') repeat;
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                url('img5.JPG') center/cover no-repeat;
+            color: var(--text-color);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: var(--text-color);
+            font-family: 'Zen Kurenaido', sans-serif;
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            color: var(--light-text-color);
+        }
+
+        .cta {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .cta:hover {
+            background-color: #555;
+        }
+
+        section {
+            padding: 60px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-dark {
+            background-color: rgba(240, 240, 240, 0.8);
+        }
+
+        h2 {
+            font-family: 'Zen Kurenaido', sans-serif;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .about-grid, .instructors-grid, .video-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+        }
+
+        .video-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .video-card {
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .member-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .member-gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .member-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .instructors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background-color: transparent;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .instructor-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+        }
+
+        .fees-container {
+            background-color: var(--primary-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fees-container h3 {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .fees-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .fees-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .fees-item-info {
+            text-align: left;
+        }
+
+        .fees-item-info h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .fees-item-info p {
+            margin: 5px 0 0 0;
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+        }
+
+        .fees-item-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .fees-note {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+        }
+
+        .location-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .location-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .location-info {
+            background-color: transparent;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .location-info h3 {
+            color: var(--accent-color);
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .events-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .events-list li {
+            background-color: var(--primary-color);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .event-date {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .event-info {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .resource-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-list li {
+            padding: 5px 0;
+            color: var(--text-color);
+        }
+
+        .resource-list a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            color: var(--light-text-color);
+            border-top: 2px solid var(--accent-color);
+        }
+
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Palo Alto Iaido</h1>
+            <h2>剣居一體</h2>
+        </div>
+    </header>
+
+    <section id="dojo-info" class="section-dark">
+        <div class="container" style="text-align: center; padding: 40px 20px; border-radius: 8px;">
+            <div class="member-gallery">
+                <img src="img1.jpg" alt="Group Photo">
+                <img src="img2.jpg" alt="Enbu Demonstration">
+                <img src="img3.jpeg" alt="Dojo members practicing">
+            </div>
+
+            <p>Palo Alto Iaido welcomes people of all skill levels who are interested in learning iaido and jodo in the SF Bay Area.</p>
+            <p> We practice Muso Shinden Ryu, a popular ko-ryu style, as well as the 12 Seitei Iaido Kata developed by the All Japan Kendo Federation (ZNKR).</p>
+            <p>We are a branch of the Palo Alto Kendo Dojo and affiliated regionally with the Northern California Kendo Federation and nationally with the All United States Kendo Federation.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>What is Iaido?</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <h3>The Art of the Sword</h3>
+                    <p>Iaido is a Japanese martial art focused on drawing, cutting, and re-sheathing a sword in one fluid motion. Instruction is done through <strong>kata</strong> (forms) practiced solo with an unsharpened blade. It demands great control, concentration, and awareness as you engage with imagined adversaries with the same intensity as a real opponent.</p>
+                </div>
+                <div class="card">
+                    <h3>Why Study Iaido?</h3>
+                    <p>Iaido helps develop a deeper understanding of crucial martial arts concepts like <strong>hasuji</strong> (blade angle), <strong>ki</strong> (inner strength), and <strong>tenouchi</strong> (grip). For kendo practitioners, it refines your sense of <strong>maai</strong> (distance) and <strong>seme</strong> (pressure). Iaido helps restore the proper spirit and intensity of the true martial way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructors" class="section-dark">
+        <div class="container">
+            <h2>Our Instructors</h2>
+            <div class="instructors-grid">
+                <div class="card instructor-card">
+                    <img src="nishiura.jpg" alt="Photo of George Nishiura Sensei">
+                    <h3>George Nishiura Sensei</h3>
+                    <p>Head Instructor</p>
+                    <p>Iaido - 6th Dan</p>
+                    <p>Kendo - 7th Dan, Kyoshi</p>
+                </div>
+                <div class="card instructor-card">
+                    <img src="sergey.jpg" alt="Photo of Sergey Z.">
+                    <h3>Sergey Z.</h3>
+                    <p>Assistant Instructor</p>
+                    <p>Iaido - 5th Dan</p>
+                    <p>Kendo - 3rd Dan</p>
+                </div>
+                <div class="card instructor-card">
+                    <img src="jeremy.jpg" alt="Photo of Jeremy Wong">
+                    <h3>Jeremy Wong</h3>
+                    <p>Assistant Instructor</p>
+                    <p>Iaido - 4th Dan</p>
+                    <p>Kendo - 4th Dan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join-us">
+        <div class="container">
+            <h2>Ready to Start?</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <h3>How to Join</h3>
+                    <p>No previous experience is required, and new students of all skill levels are welcome. The best way to start is to visit the dojo, observe a practice, and ask questions. Please contact us to coordinate your visit.</p>
+                    <p>We'll begin with the basics, including <strong>reiho</strong> (etiquette) and <strong>kihon</strong> (basic movements).</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx_1HqSYc4e7E7xYugHnjqr8FU87S3vw8ZDE86BiBrGnf8yA/viewform" target="_blank" class="cta">Contact Us</a>
+                </div>
+                <div class="card">
+                    <h3>What You'll Need</h3>
+                    <p>If you decide to join, you'll need a uniform (black gi, black hakama, obi), an <strong>iaito</strong> (practice sword), and kneepads. We have some equipment available for new students to use, but please consult with an instructor before making any equipment purchases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="section-dark">
+        <div class="container">
+            <h2>Practice Schedule & Location</h2>
+            <p style="text-align: center; color: var(--light-text-color);">Practice is held at the Cubberley Community Center.</p>
+            <div class="location-grid">
+                <div class="location-info">
+                    <p>Practice is held every Saturday from 10:00AM to 12:00PM </p>
+                    <p>Cubberley Community Center (Room L-6)</p>
+                    <p>4000 Middlefield Rd, Palo Alto, CA 94303</p>
+                </div>
+                <div class="map-container">
+                    <!-- Updated embed with pin -->
+                    <iframe
+                        src="https://www.google.com/maps?q=4000+Middlefield+Rd,+Palo+Alto,+CA+94303&z=16&output=embed&hl=en"
+                        style="width:100%;height:100%;border:0;"
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Map to Cubberley Community Center, 4000 Middlefield Rd, Palo Alto, CA 94303">
+                    </iframe>
+                    <p style="margin-top:8px;text-align:right;">
+                        <a href="https://www.google.com/maps?q=4000+Middlefield+Rd,+Palo+Alto,+CA+94303" target="_blank" rel="noopener">
+                            View on Google Maps
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <p style="text-align: center; color: var(--light-text-color);">Stay up-to-date on practices, tournaments, and seminars.</p>
+            <ul id="upcoming-events-list" class="events-list">
+                <!-- Events will be populated by JavaScript -->
+            </ul>
+        </div>
+    </section>
+
+    <section id="fees" class="section-dark">
+        <div class="container">
+            <h2>Fees & Dues</h2>
+            <div class="fees-container">
+                <div class="fees-item">
+                    <div class="fees-item-info">
+                        <h4>NCKF/AUSKF, NCIA Annual Dues, and PAKD Dues for Iai-Only Students (annual)</h4>
+                        <p>Breakdown: $110 + $35 + $25</p>
+                        <p>Payable to "Palo Alto Kendo Dojo"</p>
+                    </div>
+                    <span class="fees-item-price">$170</span>
+                </div>
+                <div class="fees-item">
+                    <div class="fees-item-info">
+                        <h4>New Student Initiation Fee (one-time)</h4>
+                        <p>Payable to "Palo Alto Kendo Dojo"</p>
+                    </div>
+                    <span class="fees-item-price">$10</span>
+                </div>
+                <div class="fees-item">
+                    <div class="fees-item-info">
+                        <h4>Iaido Gym Fees (annual)</h4>
+                        <p>Payable to Administrator</p>
+                    </div>
+                    <span class="fees-item-price">$275</span>
+                </div>
+                <div class="fees-item">
+                    <div class="fees-item-info">
+                        <h4>Visiting Iaidoka (per class)</h4>
+                        <p>Payable to Administrator</p>
+                    </div>
+                    <span class="fees-item-price">$15</span>
+                </div>
+                <div class="fees-note">
+                    Note: Fees are subject to change; confirm with an instructor or administrator.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <div class="container">
+            <h2>Resources</h2>
+            <div class="about-grid">
+                <div class="card" style="text-align: left;">
+                    <h3>Local Dojos</h3>
+                    <p><a href="https://berkeleykendo.org/" target="_blank">Berkeley Kendo Dojo</a></p>
+                    <p><a href="https://salinaskendo.org/Salinas_Kendo_Dojo/Home.html" target="_blank">Salinas Kendo Dojo</a></p>
+                    <p><a href="https://sites.google.com/site/paloaltoiaido/rancho-cordova-iaido-group?authuser=0">Rancho Cordovia Iaido Group</a>
+                    <br>
+                </div>
+                <div class="card" style="text-align: left;">
+                    <h3>Information & Media</h3>
+                    <p><a href="https://www.google.com/url?q=http%3A%2F%2Fwww.idaho-kendo.com%2Fiaido&sa=D&sntz=1&usg=AOvVaw0odsZhoOW5Xteonnou6Gzm" target="_blank">Translated ZNKR manual</a></p>
+                    <br>
+                </div>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <h3>Iaido Kata</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/7Iqzd70sCJo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Muso Shinden Ryu Shoden</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/m0MrE7eZiMQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Jodo Kata</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/U0tPr0QWKrg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Palo Alto Iaido. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="https://www.nckf.org" target="_blank">NCKF</a> |
+                <a href="https://www.auskf.org" target="_blank">AUSKF</a> |
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx_1HqSYc4e7E7xYugHnjqr8FU87S3vw8ZDE86BiBrGnf8yA/viewform" target="_blank">Contact Us</a>
+
+            </p>
+        </div>
+    </footer>
+
+    <!-- The Modal -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("fullImage");
+            const images = document.querySelectorAll(".member-gallery img");
+            const closeBtn = document.querySelector(".modal-close");
+
+            images.forEach(img => {
+                img.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                }
+            });
+
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        // Dynamic Upcoming Events Section
+        const upcomingEvents = [
+            {
+                startDate: new Date('2025-09-26'),
+                endDate: new Date('2025-09-28'),
+                month: 'Sept',
+                days: '26-28',
+                info: '<strong><a href="https://docs.google.com/document/d/1AV3XPD7KXcy0JZJaZOifLSKk8LI-CkNN/edit?tab=t.0#heading=h.mj7f6zscmbhz" target="_blank">2025 PNKF Iaido Fall Seminar & Taikai</a></strong>'
+            },
+            {
+                startDate: new Date('2025-09-20'),
+                endDate: new Date('2025-09-21'),
+                month: 'Sept',
+                days: '20-21',
+                info: '<strong><a href="https://shinken.cc/event/2025-nckf-iaido-seminar/" target="_blank">2025 NCKF Iaido Seminar</a></strong>'
+            }
+        ];
+
+        function populateUpcomingEvents() {
+            const list = document.getElementById('upcoming-events-list');
+            const today = new Date();
+            const futureEvents = upcomingEvents.filter(event => event.endDate >= today);
+
+            if (futureEvents.length > 0) {
+                futureEvents.forEach(event => {
+                    const li = document.createElement('li');
+
+                    const dateDiv = document.createElement('div');
+                    dateDiv.classList.add('event-date');
+                    dateDiv.innerHTML = `${event.month}<br>${event.days}`;
+                    li.appendChild(dateDiv);
+
+                    const infoDiv = document.createElement('div');
+                    infoDiv.classList.add('event-info');
+                    infoDiv.innerHTML = event.info;
+                    li.appendChild(infoDiv);
+
+                    list.appendChild(li);
+                });
+            } else {
+                const noEventsMessage = document.createElement('p');
+                noEventsMessage.textContent = 'There are no upcoming events at this time. Please check back later.';
+                noEventsMessage.style.textAlign = 'center';
+                noEventsMessage.style.color = 'var(--light-text-color)';
+                const eventsSection = document.getElementById('events');
+                const container = eventsSection.querySelector('.container');
+                const heading = eventsSection.querySelector('h2');
+                const subheading = eventsSection.querySelector('p');
+
+                container.innerHTML = '';
+                container.appendChild(heading);
+                container.appendChild(subheading);
+                container.appendChild(noEventsMessage);
+            }
+        }
+
+        populateUpcomingEvents();
+    </script>
+</body>
+</html>
+
