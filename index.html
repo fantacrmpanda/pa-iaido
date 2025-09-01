@@ -373,7 +373,32 @@
             text-decoration: none;
             cursor: pointer;
         }
-    </style>
+    
+/* Info modal panel */
+.modal-panel {
+    margin: 40px auto;
+    background: #fff;
+    color: #1a1a1a;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    line-height: 1.6;
+}
+.modal-panel h3 {
+    margin: 0 0 10px 0;
+    font-family: 'Zen Kurenaido', sans-serif;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+.modal-panel hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 14px 0 16px 0;
+}
+
+</style>
 </head>
 <body>
 
@@ -574,7 +599,7 @@
                     <h3>Local Dojos</h3>
                     <p><a href="https://berkeleykendo.org/" target="_blank">Berkeley Kendo Dojo</a></p>
                     <p><a href="https://salinaskendo.org/Salinas_Kendo_Dojo/Home.html" target="_blank">Salinas Kendo Dojo</a></p>
-                    <p><a href="https://sites.google.com/site/paloaltoiaido/rancho-cordova-iaido-group?authuser=0">Rancho Cordovia Iaido Group</a>
+                    <p><a href="#" id="rancho-link" role="button" aria-controls="ranchoModal">Rancho Cordova Iaido Group</a>
                     <br>
                 </div>
                 <div class="card" style="text-align: left;">
@@ -706,7 +731,66 @@
         }
 
         populateUpcomingEvents();
-    </script>
+    
+  
+  // Rancho Cordova modal behavior (robust + accessible)
+  document.addEventListener('DOMContentLoaded', function() {
+    function openModal(modal) {
+      if (!modal) return;
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    const modal = document.getElementById('ranchoModal');
+    const closeBtn = modal ? modal.querySelector('.modal-close') : null;
+
+    // Event delegation to handle clicks even if link is re-rendered
+    document.addEventListener('click', function(e) {
+      const ranchoLink = e.target.closest('#rancho-link');
+      if (ranchoLink) {
+        e.preventDefault();
+        openModal(modal);
+      }
+      if (e.target === modal) {
+        // clicked on overlay background
+        closeModal(modal);
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        closeModal(modal);
+      });
+    }
+
+    // Escape key closes modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+        closeModal(modal);
+      }
+    });
+  });
+
+</script>
+
+<!-- Rancho Cordova Modal -->
+<div id="ranchoModal" class="modal" aria-hidden="true">
+  <span class="modal-close" aria-label="Close">&times;</span>
+  <div class="modal-panel" role="dialog" aria-labelledby="ranchoTitle">
+    <h3 id="ranchoTitle">Rancho Cordova Iaido Group</h3>
+    <p>For those who live in the Sacramento area, our friends from the former Rancho Cordova Kendo Dojo have an iaido study group. Information about their practices can be found below.</p>
+    <hr>
+    <p><strong>Practice Times:</strong> Monday Nights, 6:30 PM – 8:30 PM</p>
+    <p><strong>Location:</strong> Gedatsu Church, 4016 Happy Ln, Sacramento, CA 95827</p>
+    <p><strong>Contact:</strong> Kimiye Touchi, <a href="mailto:kttouchi@comcast.net">kttouchi@comcast.net</a></p>
+  </div>
+</div>
+
 </body>
 </html>
 
